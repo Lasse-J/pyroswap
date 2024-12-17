@@ -4,12 +4,6 @@ pragma solidity ^0.8.0;
 import "hardhat/console.sol";
 import "./Token.sol";
 
-// For a SINGLE TRADING PAIR
-// [ ] Manage Pool
-// [ ] Manage Deposits
-// [ ] Facilitate Swaps
-// [ ] Manage Withdraws
-
 contract AMM {
 	Token public token1;
 	Token public token2;
@@ -194,7 +188,6 @@ contract AMM {
 		token2Amount = (_share * token2Balance) / totalShares;		
 	}
 
-	// Removes liquidity from the pool
 	function removeLiquidity(uint256 _share) 
 		external 
 		returns(uint256 token1Amount, uint256 token2Amount) 
