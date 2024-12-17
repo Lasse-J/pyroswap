@@ -101,7 +101,7 @@ contract AMM {
 
 		// Dont let pool go to zero
 		if(token2Amount == token2Balance) {
-			token2Amount --;
+			token2Amount--;
 		}
 
 		require(token2Amount < token2Balance, "Swap amount too large");
@@ -145,7 +145,7 @@ contract AMM {
 
 		// Dont let pool go to zero
 		if(token1Amount == token1Balance) {
-			token1Amount --;
+			token1Amount--;
 		}
 
 		require(token1Amount < token1Balance, "Swap amount too large");
