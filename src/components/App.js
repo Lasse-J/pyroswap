@@ -10,7 +10,9 @@ import Loading from './Loading';
 import { 
   loadProvider,
   loadNetwork,
-  loadAccount 
+  loadAccount,
+  loadTokens,
+  loadAMMPairs
 } from '../store/interactions'
 
 // ABIs: Import your contract ABIs here
@@ -32,6 +34,10 @@ function App() {
 
     // Fetch accounts
     await loadAccount(dispatch)
+
+    // Load tokens / contracts
+    await loadTokens(provider, chainId, dispatch)
+    await loadAMMPairs(provider, chainId, dispatch)
   }
 
   useEffect(() => {
