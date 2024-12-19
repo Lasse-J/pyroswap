@@ -8,12 +8,15 @@ export const amm = createSlice({
 		swaps: [[], [], [], [], [], []]
 	},
 	reducers: {
-		setAMMPair: (state, action) => {
+		setAMMPairs: (state, action) => {
 			state.contract = action.payload
+		},
+		sharesLoaded: (state, action) => {
+			state.shares = action.payload
 		}
 	}
 })
 
-export const { setAMMPair } = amm.actions;
+export const { setAMMPairs, sharesLoaded } = amm.actions;
 
 export default amm.reducer;

@@ -13,7 +13,8 @@ import {
 } from './reducers/tokens'
 
 import { 
-	setAMMPair
+	setAMMPairs,
+	sharesLoaded
 } from './reducers/amm'
 
 import TOKEN_ABI from '../abis/Token.json'
@@ -63,14 +64,14 @@ export const loadAMMPairs = async (provider, chainId, dispatch) => {
 	const pyrowbtc = new ethers.Contract(config[chainId].pyrowbtc.address, AMM_ABI, provider)
 	const pyroweth = new ethers.Contract(config[chainId].pyroweth.address, AMM_ABI, provider)
 
-	dispatch(setAMMPair([wethusdc, wbtcusdc, wbtcweth, pyrousdc, pyrowbtc, pyroweth]))
+	dispatch(setAMMPairs([wethusdc, wbtcusdc, wbtcweth, pyrousdc, pyrowbtc, pyroweth]))
 
 	return [wethusdc, wbtcusdc, wbtcweth, pyrousdc, pyrowbtc, pyroweth]
 }
 
 
 // ---------------------------------------------------------------------
-// LOAD BALANCES & SHARES
+// LOAD BALANCES
 
 export const loadBalances = async (tokens, account, dispatch) => {
 	const balance1 = await tokens[0].balanceOf(account)
@@ -78,10 +79,32 @@ export const loadBalances = async (tokens, account, dispatch) => {
 	const balance3 = await tokens[2].balanceOf(account)
 	const balance4 = await tokens[3].balanceOf(account)
 
-	dispatch(balancesLoaded(
-		balance1,
-		balance2,
-		balance3,
-		balance4
-	))
+	dispatch(balancesLoaded([
+		ethers.utils.formatUnits(balance1.toString(), 'ether'),
+		ethers.utils.formatUnits(balance2.toString(), 'ether'),
+		ethers.utils.formatUnits(balance3.toString(), 'ether'),
+		ethers.utils.formatUnits(balance4.toString(), 'ether')
+	]))	
+}
+
+
+// ---------------------------------------------------------------------
+// LOAD SHARES
+
+export const loadShares = async (amm, account, dispatch) => {
+	const shares1 = await amm[0].shares(account)
+	const shares2 = await amm[1].shares(account)
+	const shares3 = await amm[2].shares(account)
+	const shares4 = await amm[3].shares(account)
+	const shares5 = await amm[4].shares(account)
+	const shares6 = await amm[5].shares(account)
+	
+	dispatch(sharesLoaded([
+		ethers.utils.formatUnits(shares1.toString(), 'ether'),
+		ethers.utils.formatUnits(shares2.toString(), 'ether'),
+		ethers.utils.formatUnits(shares3.toString(), 'ether'),
+		ethers.utils.formatUnits(shares4.toString(), 'ether'),
+		ethers.utils.formatUnits(shares5.toString(), 'ether'),
+		ethers.utils.formatUnits(shares6.toString(), 'ether')
+	]))
 }
