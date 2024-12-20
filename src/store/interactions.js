@@ -17,7 +17,10 @@ import {
 	sharesLoaded,
 	swapRequest,
 	swapSuccess,
-	swapFail
+	swapFail,
+	depositRequest,
+	depositSuccess,
+	depositFail
 } from './reducers/amm'
 
 import TOKEN_ABI from '../abis/Token.json'
@@ -110,6 +113,28 @@ export const loadShares = async (amm, account, dispatch) => {
 		ethers.utils.formatUnits(shares5.toString(), 'ether'),
 		ethers.utils.formatUnits(shares6.toString(), 'ether')
 	]))
+}
+
+// ---------------------------------------------------------------------
+// ADD LIQUIDITY
+
+export const addLiquidity = async (provider, amm, tokens, amounts, dispatch) => {
+	try {
+		dispatch(depositRequest())
+		const signer = await provider.getSigner()
+		let transaction
+		transaction = await tokens[0].connect(signer).approve(amm.address, amounts[0])
+		await transaction.wait()
+		transaction = await tokens[1].connect(signer).approve(amm.address, amounts[1])
+		await transaction.wait()
+
+		transaction = await amm.connect(signer).addLiquidity(amounts[0], amounts[1])
+		await transaction.wait()
+
+		dispatch(depositSuccess(transaction.hash))
+	} catch (error) {
+		dispatch(depositFail())
+	}
 }
 
 // ---------------------------------------------------------------------
