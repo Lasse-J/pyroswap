@@ -14,7 +14,10 @@ import {
 
 import { 
 	setAMMPairs,
-	sharesLoaded
+	sharesLoaded,
+	swapRequest,
+	swapSuccess,
+	swapFail
 } from './reducers/amm'
 
 import TOKEN_ABI from '../abis/Token.json'
@@ -107,4 +110,45 @@ export const loadShares = async (amm, account, dispatch) => {
 		ethers.utils.formatUnits(shares5.toString(), 'ether'),
 		ethers.utils.formatUnits(shares6.toString(), 'ether')
 	]))
+}
+
+// ---------------------------------------------------------------------
+// SWAP
+
+export const swapT1 = async (provider, amm, token, symbol, amount, dispatch) => {
+	try {
+		dispatch(swapRequest())
+
+		let transaction
+		const signer = await provider.getSigner()
+
+		transaction = await token.connect(signer).approve(amm.address, amount)
+		await transaction.wait()
+
+		transaction = await amm.connect(signer).swapToken1(amount)
+		await transaction.wait()
+
+		dispatch(swapSuccess(transaction.hash))
+	} catch (error) {
+		dispatch(swapFail())
+	}
+}
+
+export const swapT2 = async (provider, amm, token, symbol, amount, dispatch) => {
+	try {
+		dispatch(swapRequest())
+
+		let transaction
+		const signer = await provider.getSigner()
+
+		transaction = await token.connect(signer).approve(amm.address, amount)
+		await transaction.wait()
+
+		transaction = await amm.connect(signer).swapToken2(amount)
+		await transaction.wait()
+
+		dispatch(swapSuccess(transaction.hash))
+	} catch (error) {
+		dispatch(swapFail())
+	}
 }
