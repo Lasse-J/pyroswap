@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
+import { ethers } from 'ethers'
 
 // Components
 import Navigation from './Navigation';
@@ -26,7 +27,6 @@ import {
 // import config from '../config.json';
 
 function App() {
-
   const dispatch = useDispatch()
 
   const loadBlockchainData = async () => {

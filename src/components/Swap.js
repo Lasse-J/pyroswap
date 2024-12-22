@@ -48,7 +48,7 @@ const Swap = () => {
 			return
 		}
 
-		if (inputToken === 'wETH' && outputToken === 'USDC') {
+		if (inputToken === symbols[0] && outputToken === symbols[3]) {
 			setInputAmount(e.target.value)
 			const _token1Amount = ethers.utils.parseUnits(e.target.value, 'ether')
 			const result = await amm[0].calculateToken1Swap(_token1Amount)
@@ -58,7 +58,7 @@ const Swap = () => {
 			setPrice(await amm[0].token2Balance() / await amm[0].token1Balance())
 			return
 		}
-		if (inputToken === 'USDC' && outputToken === 'wETH') {
+		if (inputToken === symbols[3] && outputToken === symbols[0]) {
 			setInputAmount(e.target.value)
 			const _token2Amount = ethers.utils.parseUnits(e.target.value, 'ether')
 			const result = await amm[0].calculateToken2Swap(_token2Amount)
@@ -68,7 +68,7 @@ const Swap = () => {
 			setPrice(await amm[0].token1Balance() / await amm[0].token2Balance())
 			return
 		}
-		if (inputToken === 'wBTC' && outputToken === 'USDC') {
+		if (inputToken === symbols[1] && outputToken === symbols[3]) {
 			setInputAmount(e.target.value)
 			const _token1Amount = ethers.utils.parseUnits(e.target.value, 'ether')
 			const result = await amm[1].calculateToken1Swap(_token1Amount)
@@ -78,7 +78,7 @@ const Swap = () => {
 			setPrice(await amm[1].token2Balance() / await amm[1].token1Balance())
 			return
 		}
-		if (inputToken === 'USDC' && outputToken === 'wBTC') {
+		if (inputToken === symbols[3] && outputToken === symbols[1]) {
 			setInputAmount(e.target.value)
 			const _token2Amount = ethers.utils.parseUnits(e.target.value, 'ether')
 			const result = await amm[1].calculateToken2Swap(_token2Amount)
@@ -88,7 +88,7 @@ const Swap = () => {
 			setPrice(await amm[1].token1Balance() / await amm[1].token2Balance())
 			return
 		}		
-		if (inputToken === 'wBTC' && outputToken === 'wETH') {
+		if (inputToken === symbols[1] && outputToken === symbols[0]) {
 			setInputAmount(e.target.value)
 			const _token1Amount = ethers.utils.parseUnits(e.target.value, 'ether')
 			const result = await amm[2].calculateToken1Swap(_token1Amount)
@@ -98,7 +98,7 @@ const Swap = () => {
 			setPrice(await amm[2].token2Balance() / await amm[2].token1Balance())
 			return
 		}
-		if (inputToken === 'wETH' && outputToken === 'wBTC') {
+		if (inputToken === symbols[0] && outputToken === symbols[1]) {
 			setInputAmount(e.target.value)
 			const _token2Amount = ethers.utils.parseUnits(e.target.value, 'ether')
 			const result = await amm[2].calculateToken2Swap(_token2Amount)
@@ -108,7 +108,7 @@ const Swap = () => {
 			setPrice(await amm[2].token1Balance() / await amm[2].token2Balance())
 			return
 		}
-		if (inputToken === 'PYRO' && outputToken === 'USDC') {
+		if (inputToken === symbols[2] && outputToken === symbols[3]) {
 			setInputAmount(e.target.value)
 			const _token1Amount = ethers.utils.parseUnits(e.target.value, 'ether')
 			const result = await amm[3].calculateToken1Swap(_token1Amount)
@@ -118,7 +118,7 @@ const Swap = () => {
 			setPrice(await amm[3].token2Balance() / await amm[3].token1Balance())
 			return
 		}
-		if (inputToken === 'USDC' && outputToken === 'PYRO') {
+		if (inputToken === symbols[3] && outputToken === symbols[2]) {
 			setInputAmount(e.target.value)
 			const _token2Amount = ethers.utils.parseUnits(e.target.value, 'ether')
 			const result = await amm[3].calculateToken2Swap(_token2Amount)
@@ -128,7 +128,7 @@ const Swap = () => {
 			setPrice(await amm[3].token1Balance() / await amm[3].token2Balance())
 			return
 		}
-		if (inputToken === 'PYRO' && outputToken === 'wBTC') {
+		if (inputToken === symbols[2] && outputToken === symbols[1]) {
 			setInputAmount(e.target.value)
 			const _token1Amount = ethers.utils.parseUnits(e.target.value, 'ether')
 			const result = await amm[4].calculateToken1Swap(_token1Amount)
@@ -138,7 +138,7 @@ const Swap = () => {
 			setPrice(await amm[4].token2Balance() / await amm[4].token1Balance())
 			return
 		}
-		if (inputToken === 'wBTC' && outputToken === 'PYRO') {
+		if (inputToken === symbols[1] && outputToken === symbols[2]) {
 			setInputAmount(e.target.value)
 			const _token2Amount = ethers.utils.parseUnits(e.target.value, 'ether')
 			const result = await amm[4].calculateToken2Swap(_token2Amount)
@@ -148,7 +148,7 @@ const Swap = () => {
 			setPrice(await amm[4].token1Balance() / await amm[4].token2Balance())
 			return
 		}
-		if (inputToken === 'PYRO' && outputToken === 'wETH') {
+		if (inputToken === symbols[2] && outputToken === symbols[0]) {
 			setInputAmount(e.target.value)
 			const _token1Amount = ethers.utils.parseUnits(e.target.value, 'ether')
 			const result = await amm[5].calculateToken1Swap(_token1Amount)
@@ -158,7 +158,7 @@ const Swap = () => {
 			setPrice(await amm[5].token2Balance() / await amm[5].token1Balance())
 			return
 		}
-		if (inputToken === 'wETH' && outputToken === 'PYRO') {
+		if (inputToken === symbols[0] && outputToken === symbols[2]) {
 			setInputAmount(e.target.value)
 			const _token2Amount = ethers.utils.parseUnits(e.target.value, 'ether')
 			const result = await amm[5].calculateToken2Swap(_token2Amount)
@@ -184,51 +184,63 @@ const Swap = () => {
 		const _inputAmount = ethers.utils.parseUnits(inputAmount, 'ether')
 
 		// Pair: wETH/USDC
-		if (inputToken === 'wETH' && outputToken === 'USDC') {
+		if (inputToken === symbols[0] && outputToken === symbols[3]) {
 			await swapT1(provider, amm[0], tokens[0], inputToken, _inputAmount, dispatch)
+			return
 		}
-		if (inputToken === 'USDC' && outputToken === 'wETH') {
+		if (inputToken === symbols[3] && outputToken === symbols[0]) {
 			await swapT2(provider, amm[0], tokens[3], inputToken, _inputAmount, dispatch)
+			return
 		}
 
 		// Pair: wBTC/USDC
-		if (inputToken === 'wBTC' && outputToken === 'USDC') {
+		if (inputToken === symbols[1] && outputToken === symbols[3]) {
 			await swapT1(provider, amm[1], tokens[1], inputToken, _inputAmount, dispatch)
+			return
 		}
-		if (inputToken === 'USDC' && outputToken === 'wBTC') {
+		if (inputToken === symbols[3] && outputToken === symbols[1]) {
 			await swapT2(provider, amm[1], tokens[3], inputToken, _inputAmount, dispatch)
+			return
 		}
 
 		// Pair: wBTC/wETH
-		if (inputToken === 'wBTC' && outputToken === 'wETH') {
+		if (inputToken === symbols[1] && outputToken === symbols[0]) {
 			await swapT1(provider, amm[2], tokens[1], inputToken, _inputAmount, dispatch)
+			return
 		}
-		if (inputToken === 'wETH' && outputToken === 'wBTC') {
+		if (inputToken === symbols[0] && outputToken === symbols[1]) {
 			await swapT2(provider, amm[2], tokens[0], inputToken, _inputAmount, dispatch)
+			return
 		}
 
 		// Pair: PYRO/USDC
-		if (inputToken === 'PYRO' && outputToken === 'USDC') {
+		if (inputToken === symbols[2] && outputToken === symbols[3]) {
 			await swapT1(provider, amm[3], tokens[2], inputToken, _inputAmount, dispatch)
+			return
 		}
-		if (inputToken === 'USDC' && outputToken === 'PYRO') {
+		if (inputToken === symbols[3] && outputToken === symbols[2]) {
 			await swapT2(provider, amm[3], tokens[3], inputToken, _inputAmount, dispatch)
+			return
 		}
 
 		// Pair: PYRO/wBTC
-		if (inputToken === 'PYRO' && outputToken === 'wBTC') {
+		if (inputToken === symbols[2] && outputToken === symbols[1]) {
 			await swapT1(provider, amm[4], tokens[2], inputToken, _inputAmount, dispatch)
+			return
 		}
-		if (inputToken === 'wBTC' && outputToken === 'PYRO') {
+		if (inputToken === symbols[1] && outputToken === symbols[2]) {
 			await swapT2(provider, amm[4], tokens[1], inputToken, _inputAmount, dispatch)
+			return
 		}
 
 		// Pair: PYRO/wETH
-		if (inputToken === 'PYRO' && outputToken === 'wETH') {
+		if (inputToken === symbols[2] && outputToken === symbols[0]) {
 			await swapT1(provider, amm[5], tokens[2], inputToken, _inputAmount, dispatch)
+			return
 		}
-		if (inputToken === 'wETH' && outputToken === 'PYRO') {
+		if (inputToken === symbols[0] && outputToken === symbols[2]) {
 			await swapT2(provider, amm[5], tokens[0], inputToken, _inputAmount, dispatch)
+			return
 		}
 
 		await loadBalances(tokens, account, dispatch)
@@ -244,51 +256,51 @@ const Swap = () => {
 			setPrice(0)
 			return
 		}
-		if (inputToken === 'wETH' && outputToken === 'USDC') {
+		if (inputToken === symbols[0] && outputToken === symbols[3]) {
 			setPrice(await amm[0].token2Balance() / await amm[0].token1Balance())
 			return
 		}
-		if (inputToken === 'USDC' && outputToken === 'wETH') {
+		if (inputToken === symbols[3] && outputToken === symbols[0]) {
 			setPrice(await amm[0].token1Balance() / await amm[0].token2Balance())
 			return
 		}
-		if (inputToken === 'wBTC' && outputToken === 'USDC') {
+		if (inputToken === symbols[1] && outputToken === symbols[3]) {
 			setPrice(await amm[1].token2Balance() / await amm[1].token1Balance())
 			return
 		}
-		if (inputToken === 'USDC' && outputToken === 'wBTC') {
+		if (inputToken === symbols[3] && outputToken === symbols[1]) {
 			setPrice(await amm[1].token1Balance() / await amm[1].token2Balance())
 			return
 		}		
-		if (inputToken === 'wBTC' && outputToken === 'wETH') {
+		if (inputToken === symbols[1] && outputToken === symbols[0]) {
 			setPrice(await amm[2].token2Balance() / await amm[2].token1Balance())
 			return
 		}
-		if (inputToken === 'wETH' && outputToken === 'wBTC') {
+		if (inputToken === symbols[0] && outputToken === symbols[1]) {
 			setPrice(await amm[2].token1Balance() / await amm[2].token2Balance())
 			return
 		}
-		if (inputToken === 'PYRO' && outputToken === 'USDC') {
+		if (inputToken === symbols[2] && outputToken === symbols[3]) {
 			setPrice(await amm[3].token2Balance() / await amm[3].token1Balance())
 			return
 		}
-		if (inputToken === 'USDC' && outputToken === 'PYRO') {
+		if (inputToken === symbols[3] && outputToken === symbols[2]) {
 			setPrice(await amm[3].token1Balance() / await amm[3].token2Balance())
 			return
 		}
-		if (inputToken === 'PYRO' && outputToken === 'wBTC') {
+		if (inputToken === symbols[2] && outputToken === symbols[1]) {
 			setPrice(await amm[4].token2Balance() / await amm[4].token1Balance())
 			return
 		}
-		if (inputToken === 'wBTC' && outputToken === 'PYRO') {
+		if (inputToken === symbols[1] && outputToken === symbols[2]) {
 			setPrice(await amm[4].token1Balance() / await amm[4].token2Balance())
 			return
 		}
-		if (inputToken === 'PYRO' && outputToken === 'wETH') {
+		if (inputToken === symbols[2] && outputToken === symbols[0]) {
 			setPrice(await amm[5].token2Balance() / await amm[5].token1Balance())
 			return
 		}
-		if (inputToken === 'wETH' && outputToken === 'PYRO') {
+		if (inputToken === symbols[0] && outputToken === symbols[2]) {
 			setPrice(await amm[5].token1Balance() / await amm[5].token2Balance())
 			return
 		}

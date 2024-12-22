@@ -31,6 +31,7 @@ const Deposit = () => {
 	const balances = useSelector(state => state.tokens.balances)
 	
 	const amm = useSelector(state => state.amm.contract)
+	const shares = useSelector(state => state.amm.shares)
 
 	const isDepositing = useSelector(state => state.amm.depositing.isDepositing)
 	const isSuccess = useSelector(state => state.amm.depositing.isSuccess)
@@ -143,6 +144,9 @@ const Deposit = () => {
 		await loadShares(amm, account, dispatch)
 
 		setShowAlert(true)
+
+		setToken1Amount(0)
+		setToken2Amount(0)
 	}
 
 	useEffect(() => {
@@ -157,6 +161,9 @@ const Deposit = () => {
 				{account ? (
 					<Form onSubmit={depositHandler} style={{ maxWidth: '450px', margin: '50px auto' }}>
 						<Row>
+							<Form.Text className='text-center my-2' muted>
+								<p><strong>Deposit Liquidity Pair</strong></p>
+							</Form.Text>
 							<Form.Text className='text-end my-2' muted>
 								Balance: {
 									token1 === symbols[0] ? (
@@ -250,6 +257,17 @@ const Deposit = () => {
 							)}
 						</Row>
 
+						<Row>
+							<Form.Text className='my-1' muted>
+								{token1 && token2 ? (
+									<p>
+									Shares: {shares[selectedAMM]}
+									</p>
+								) : (
+									<></>
+								)}
+							</Form.Text>
+						</Row>
 					</Form>
 				) : (
 					<p 
