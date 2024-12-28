@@ -15,6 +15,7 @@ import {
 import { 
 	setAMMPairs,
 	sharesLoaded,
+	swapsLoaded,
 	swapRequest,
 	swapSuccess,
 	swapFail,
@@ -200,4 +201,19 @@ export const swapT2 = async (provider, amm, token, symbol, amount, dispatch) => 
 	} catch (error) {
 		dispatch(swapFail())
 	}
+}
+
+// ---------------------------------------------------------------------
+// LOAD ALL SWAPS
+
+export const loadAllSwaps = async (provider, amm, dispatch) => {
+
+	const block = await provider.getBlockNumber()
+
+	const swapStream = await amm.queryFilter('Swap', 0, block)
+	const swaps = swapStream.map(event => {
+		return { hash: event.transactionHash, args: event.args }
+	})
+
+	dispatch(swapsLoaded(swaps))
 }

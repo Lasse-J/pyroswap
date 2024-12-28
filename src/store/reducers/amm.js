@@ -5,7 +5,7 @@ export const amm = createSlice({
 	initialState: {
 		contract: [null, null, null, null, null, null],
 		shares: [0, 0, 0, 0, 0, 0],
-		swaps: [[], [], [], [], [], []],
+		swaps: [],
 		swapping: {
 			isSwapping: false,
 			isSuccess: false,
@@ -28,6 +28,9 @@ export const amm = createSlice({
 		},
 		sharesLoaded: (state, action) => {
 			state.shares = action.payload
+		},
+		swapsLoaded: (state, action) => {
+			state.swaps = action.payload
 		},
 		swapRequest: (state, action) => {
 			state.swapping.isSwapping = true
@@ -80,6 +83,7 @@ export const amm = createSlice({
 export const {
 	setAMMPairs,
 	sharesLoaded,
+	swapsLoaded,
 	swapRequest,
 	swapSuccess,
 	swapFail,

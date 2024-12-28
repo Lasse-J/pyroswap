@@ -28,6 +28,11 @@ contract AMM {
 		uint256 timestamp
 	);
 
+	event Received(
+		address user,
+		uint256 amount
+	);
+
 	constructor(Token _token1, Token _token2) {
 		token1 = _token1;
 		token2 = _token2;
@@ -207,6 +212,10 @@ contract AMM {
 
 		token1.transfer(msg.sender, token1Amount);
 		token2.transfer(msg.sender, token2Amount);
+	}
+
+	receive() external payable {
+		emit Received(msg.sender, msg.value);
 	}
 
 }
