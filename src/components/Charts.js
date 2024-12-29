@@ -38,8 +38,6 @@ const Charts = () => {
 
 	const chart = useSelector(chartSelector)
 
-	const swaps = useSelector(state => state.amm.swaps)
-
 	const dispatch = useDispatch()
 
 	const token1SelectHandler = async (token, index) => {
@@ -181,7 +179,7 @@ const Charts = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{swaps && swaps.map((swap, index) => (
+						{chart.swaps && chart.swaps.map((swap, index) => (
 							<tr key={index}>
 								<td>{swap.hash.slice(0, 5) + '...' + swap.hash.slice(-5)}</td>
 								<td>{swap.args.tokenGive === tokens[t1].address ? symbols[t1] : symbols[t2]}</td>

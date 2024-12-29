@@ -20,12 +20,6 @@ import {
   loadAMMPairs
 } from '../store/interactions'
 
-// ABIs: Import your contract ABIs here
-// import TOKEN_ABI from '../abis/Token.json'
-
-// Config: Import your network config here
-// import config from '../config.json';
-
 function App() {
   const dispatch = useDispatch()
 

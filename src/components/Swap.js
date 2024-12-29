@@ -251,7 +251,6 @@ const Swap = () => {
 	}
 
 	const getPrice = async () => {
-		console.log({ inputToken, outputToken })
 		if (inputToken === outputToken) {
 			setPrice(0)
 			return
