@@ -176,8 +176,8 @@ contract AMM {
 			_token2Amount,
 			address(token1),
 			token1Amount,
-			token2Balance,
 			token1Balance,
+			token2Balance,
 			block.timestamp
 		);
 	}

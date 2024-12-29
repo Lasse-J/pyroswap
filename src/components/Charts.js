@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ethers } from 'ethers';
+
+import Chart from 'react-apexcharts';
+import { chartSelector } from '../store/selectors';
+import { options, series } from './Charts.config';
+
 import Table from 'react-bootstrap/Table';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
@@ -17,7 +22,7 @@ import {
 } from '../store/interactions'
 
 const Charts = () => {
-	const [selectedAMM, setSelectedAMM] = useState(0)
+	const [selectedAMM, setSelectedAMM] = useState(null)
 	const [selectedToken1, setSelectedToken1] = useState(null)
 	const [selectedToken2, setSelectedToken2] = useState(null)
 	const [t1, setT1] = useState(0)
@@ -30,6 +35,9 @@ const Charts = () => {
 	const symbols = useSelector(state => state.tokens.symbols)
 	
 	const amm = useSelector(state => state.amm.contract)
+
+	const chart = useSelector(chartSelector)
+
 	const swaps = useSelector(state => state.amm.swaps)
 
 	const dispatch = useDispatch()
@@ -91,7 +99,7 @@ const Charts = () => {
 						<InputGroup className='justify-content-center gap-2'>
 							<DropdownButton
 								variant="outline-secondary"
-								title={selectedToken1 ? selectedToken1 : "Select Token"}
+								title={selectedToken1 ? selectedToken1 : 'Select Token'}
 							>
 								<Dropdown.Item onClick={() => token1SelectHandler(symbols[0], 0)}>{symbols[0]}</Dropdown.Item>
 								<Dropdown.Item onClick={() => token1SelectHandler(symbols[1], 1)}>{symbols[1]}</Dropdown.Item>
@@ -100,7 +108,8 @@ const Charts = () => {
 
 							<DropdownButton
 								variant="outline-secondary"
-								title={selectedToken2 ? selectedToken2 : "Select Token"}
+								placeholder="selectedToken2"
+								title={selectedToken2 ? selectedToken2 : 'Select Token'}
 							>
 								{selectedToken1 === symbols[0] ? (
 									<Dropdown.Item onClick={() => token2SelectHandler(symbols[3], 3)}>{symbols[3]}</Dropdown.Item>
@@ -126,8 +135,38 @@ const Charts = () => {
 				</Form>
 			</Card>
 
-			{isLoading ? (
-				<Loading />
+			<hr />
+
+			<div>
+				{provider && amm && selectedAMM !== null ? (
+					<Chart
+						options={options}
+						series={chart ? chart.series : series}
+						type="line"
+						width="100%"
+						height="200%"
+					/>
+				) : (
+					<Loading />
+				)}
+			</div>
+
+			<hr />
+
+			{isLoading && selectedToken1 === null || selectedToken2 === null ? (
+				<Table striped bordered hover>
+					<thead>
+						<tr>
+							<th>Transaction Hash</th>
+							<th>Token Give</th>
+							<th>Amount Give</th>
+							<th>Token Get</th>
+							<th>Amount Get</th>
+							<th>User</th>
+							<th>Time</th>
+						</tr>
+					</thead>
+				</Table>
 			) : (
 				<Table striped bordered hover>
 					<thead>
@@ -151,7 +190,7 @@ const Charts = () => {
 								<td>{ethers.utils.formatUnits(swap.args.tokenGetAmount.toString(), 'ether')}</td>
 								<td>{swap.args.user.slice(0, 5) + '...' + swap.args.user.slice(-4)}</td>
 								<td>{
-									new Date(Number(swap.args.timestamp.toString() + '000'))
+									new Date(Number(swap.args.timestamp.toString() * 1000))
 										.toLocaleDateString(
 											undefined,
 											{
