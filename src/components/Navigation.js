@@ -31,7 +31,7 @@ const Navigation = () => {
   }
 
   return (
-    <Navbar className="my-3" expand="lg">
+    <Navbar className="my-2" expand="lg">
       <img
         alt="logo"
         src={logo}
@@ -39,7 +39,7 @@ const Navigation = () => {
         height="40"
         className="d-inline-block align-top mx-3"
       />
-      <Navbar.Brand href="#">PyroSwap AMM</Navbar.Brand>
+      <Navbar.Brand href="#"><h1 className="text-lg mt-2">PyroSwap AMM</h1></Navbar.Brand>
       <Navbar.Toggle aria-controls="nav" />
       <Navbar.Collapse id="nav" className="justify-content-end">
         <div className="d-flex justify-content-end mt-3">
@@ -72,7 +72,7 @@ const Navigation = () => {
               />
             </Navbar.Text>
           ):(
-            <Button onClick={connectHandler}>Connect</Button>
+            <Button variant="dark" onClick={connectHandler}>Connect</Button>
           )}
         </div>
       </Navbar.Collapse>

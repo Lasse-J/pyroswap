@@ -87,7 +87,7 @@ const Charts = () => {
 	}, [provider, amm, selectedAMM, dispatch])
 
 	return (
-		<div>
+		<div className='content'>
 			<Card style={{ maxWidth: '450px' }} className='mx-auto px-4'>
 				<Form onSubmit={selectAMMHandler} style={{ maxWidth: '450px', margin: '50px auto' }}>
 					<Row>
@@ -127,7 +127,7 @@ const Charts = () => {
 									</>
 								)}
 							</DropdownButton>
-						<Button type='submit'>Load data</Button>
+						<Button variant="dark" type='submit'>Load data</Button>
 						</InputGroup>
 					</Row>
 				</Form>

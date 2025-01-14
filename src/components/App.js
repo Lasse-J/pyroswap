@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import { ethers } from 'ethers'
+import Card from 'react-bootstrap/Card';
 
 // Components
 import Navigation from './Navigation';
@@ -50,10 +51,12 @@ function App() {
   }, []);
 
   return(
-    <Container>
+    <Container className="h-dvh">
       <HashRouter>
 
-        <Navigation />
+        <Card className="opacity-99 min-h-screen px-2 pb-2 mt-2">
+         
+          <Navigation />
 
         <hr />
 
@@ -65,6 +68,8 @@ function App() {
           <Route path="/withdraw" element={<Withdraw />} />
           <Route path="/charts" element={<Charts />} />
         </Routes>
+
+        </Card>
       </HashRouter>
     </Container>
   )

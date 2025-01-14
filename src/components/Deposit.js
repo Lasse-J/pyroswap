@@ -157,7 +157,7 @@ const Deposit = () => {
 
 	return (
 		<div>
-			<Card style={{ maxWidth: '450px' }} className='mx-auto px-4'>
+			<Card style={{ maxWidth: '450px' }} className='content mx-auto px-4'>
 				{account ? (
 					<Form onSubmit={depositHandler} style={{ maxWidth: '450px', margin: '50px auto' }}>
 						<Row>
@@ -253,7 +253,7 @@ const Deposit = () => {
 							{isDepositing ? (
 								<Spinner animation="border" style={{ display: 'block', margin: '0 auto' }} />
 							) : (
-								<Button type='submit'>Deposit</Button>
+								<Button variant="dark" type='submit'>Deposit</Button>
 							)}
 						</Row>
 

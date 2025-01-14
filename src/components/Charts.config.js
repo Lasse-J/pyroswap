@@ -14,7 +14,13 @@ export const options = {
 	},
 	title: {
 		text: 'Price History',
-		align: 'left'
+		align: 'left',
+		style: {
+      fontSize:  '16px',
+      fontWeight:  'bold',
+      fontFamily:  'Roboto, sans-serif',
+      color:  '#263238'
+    },
 	},
 	grid: {
 		row: {

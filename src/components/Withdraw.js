@@ -97,7 +97,7 @@ const Withdraw = () => {
 
 	return (
 		<div>
-			<Card style={{ maxWidth: '450px' }} className='mx-auto px-4'>
+			<Card style={{ maxWidth: '450px' }} className='content mx-auto px-4'>
 				{account ? (
 					<Form onSubmit={withdrawHandler} style={{ maxWidth: '450px', margin: '50px auto' }}>
 						<Row>
@@ -163,15 +163,14 @@ const Withdraw = () => {
 							{isWithdrawing ? (
 								<Spinner animation="border" style={{ display:'block', margin: '0 auto' }} />
 							) : (
-								<Button type='submit'>Withdraw</Button>
+								<Button variant="dark" type='submit'>Withdraw</Button>
 							)}
 						</Row>
-
-						<hr />
 
 						<Row>
 							{withdrawToken1 && withdrawToken2 ? (
 								<>
+									<hr />
 									<p><strong>{withdrawToken1} Balance:</strong> {balances[t1]}</p>
 									<p><strong>{withdrawToken2} Balance:</strong> {balances[t2]}</p>
 								</>
