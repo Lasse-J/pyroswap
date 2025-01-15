@@ -52,9 +52,9 @@ const Navigation = () => {
             <option value="0" disabled>Select Network</option>
             <option value="0x7A69">Localhost</option>
             <option value="0xAA36A7">Ethereum Sepolia</option>
-            <option value="0xaa37dc">OP Sepolia</option>
             <option value="0x8274f">Scroll Sepolia</option>
-            <option value="0x12c">ZkSync Sepolia</option>
+            <option value="0xaa37dc">OP Sepolia (not deployed)</option>
+            <option value="0x12c">ZkSync Sepolia (not deployed)</option>
           </Form.Select>
 
 

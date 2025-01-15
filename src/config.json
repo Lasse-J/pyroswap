@@ -30,5 +30,101 @@
     "pyroweth": {
       "address": "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318"
     }
+  },
+  "11155111": {
+    "weth": {
+      "address": "0x927811943a2a46ea98cDA7A5D86f90E271E7cC6d"
+    },
+    "wbtc": {
+      "address": "0x1D0413678A91f6907c326498BEE5fa82a55C886F"
+    },
+    "pyro": {
+      "address": "0x761283f3487e72Bbcef243a0beF402e152cE5b1D"
+    },
+    "usdc": {
+      "address": "0xB6A4FDFc86A86A3189c871F3e3763c454f269659"
+    },
+    "wethusdc": {
+      "address": "0x01104EeaBeBf3Aa89900334efBa8068Aa89c307B"
+    },
+    "wbtcusdc": {
+      "address": "0xA8DFa35CFF8BE987320b3BB5C64fb79ba491E9da"
+    },
+    "wbtcweth": {
+      "address": "0x7C469dbD46ed464c3A6097e09B1dbf879a58EA30"
+    },
+    "pyrousdc": {
+      "address": "0x200415381A8852AB64303BcEFDa1d2F51480e607"
+    },
+    "pyrowbtc": {
+      "address": "0xD7C68e3097Aa00d3a0DD33bAf03C815f88f73Bb6"
+    },
+    "pyroweth": {
+      "address": "0xfaf2167f5805EBB8dC9B35A4c10d87be7355b5E3"
+    }
+  },
+  "534351": {
+    "weth": {
+      "address": "0xad90961992874c0d81697F5d21AA8b25d57D4Faf"
+    },
+    "wbtc": {
+      "address": "0xf198110D5CCF4377b918240C61CdAED254b2B867"
+    },
+    "pyro": {
+      "address": "0xABC8C4E7f08df82f64ae62763aF24c0F827FB5C1"
+    },
+    "usdc": {
+      "address": "0x92e3cE00DEbD53A3760b0B6EF70476B1C3953944"
+    },
+    "wethusdc": {
+      "address": "0x98D7a81fAc051675A89e392aCCAc58B3eF5dcc85"
+    },
+    "wbtcusdc": {
+      "address": "0xa456829bd6E6d52386198364842A7caE0e5F27fb"
+    },
+    "wbtcweth": {
+      "address": "0x8eE265c66B4a3d521CbDAac100162e08A21C7792"
+    },
+    "pyrousdc": {
+      "address": "0x06F33AE88DD85d74e017c52142dCa9396F19279e"
+    },
+    "pyrowbtc": {
+      "address": "0x3b436fc94D786D3f05BDA334b6aAdf86CEfdBe84"
+    },
+    "pyroweth": {
+      "address": "0xFc5EA025259c6436D6Dc4c9C7FE8C2aCCCdA2bE5"
+    }
+  },
+  "137": {
+    "weth": {
+      "address": "0x98D7a81fAc051675A89e392aCCAc58B3eF5dcc85"
+    },
+    "wbtc": {
+      "address": "0xa456829bd6E6d52386198364842A7caE0e5F27fb"
+    },
+    "pyro": {
+      "address": "0x8eE265c66B4a3d521CbDAac100162e08A21C7792"
+    },
+    "usdc": {
+      "address": "0x06F33AE88DD85d74e017c52142dCa9396F19279e"
+    },
+    "wethusdc": {
+      "address": "0x3b436fc94D786D3f05BDA334b6aAdf86CEfdBe84"
+    },
+    "wbtcusdc": {
+      "address": "0xFc5EA025259c6436D6Dc4c9C7FE8C2aCCCdA2bE5"
+    },
+    "wbtcweth": {
+      "address": "0x927811943a2a46ea98cDA7A5D86f90E271E7cC6d"
+    },
+    "pyrousdc": {
+      "address": "0x1D0413678A91f6907c326498BEE5fa82a55C886F"
+    },
+    "pyrowbtc": {
+      "address": "0x761283f3487e72Bbcef243a0beF402e152cE5b1D"
+    },
+    "pyroweth": {
+      "address": "0xB6A4FDFc86A86A3189c871F3e3763c454f269659"
+    }
   }
 }
