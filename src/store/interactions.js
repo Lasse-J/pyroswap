@@ -210,17 +210,17 @@ export const loadAllSwaps = async (provider, amm, dispatch) => {
 
 	const { chainId } = await provider.getNetwork()
 
+	const block = await provider.getBlockNumber()
+
 	let fromBlock = null
 
 	if (chainId === 31337) {
 			fromBlock = 0;
 		} else if (chainId === 11155111) {
-			fromBlock = 7490000;
+			fromBlock = block - 9998;
 		} else if (chainId === 534351) {
-			fromBlock = 7870000;
+			fromBlock = block - 9998;
 		}
-
-	const block = await provider.getBlockNumber()
 
 	const swapStream = await amm.queryFilter('Swap', fromBlock, block)
 	const swaps = swapStream.map(event => {
